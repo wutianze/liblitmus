@@ -26,12 +26,14 @@ flags-api      = -D_XOPEN_SOURCE=600 -D_GNU_SOURCE
 flags-i386     = -m32
 flags-x86_64   = -m64
 flags-sparc64  = -mcpu=v9 -m64
+# flags-riscv    = -m64
 # default: none
 
 # name of the directory that has the arch headers in the Linux source
 include-i386     = x86
 include-x86_64   = x86
 include-sparc64  = sparc
+include-riscv    = riscv
 # default: the arch name
 include-${ARCH} ?= ${ARCH}
 
@@ -150,11 +152,13 @@ include/litmus/%.h: ${LITMUS_KERNEL}/include/litmus/%.h
 # asm headers
 arch/${include-${ARCH}}/include/uapi/asm/%.h: \
 	${LITMUS_KERNEL}/arch/${include-${ARCH}}/include/uapi/asm/%.h
+	@echo start copy
 	@mkdir -p ${dir $@}
 	cp $< $@
 
 arch/${include-${ARCH}}/include/generated/uapi/asm/%.h: \
 	${LITMUS_KERNEL}/arch/${include-${ARCH}}/include/generated/uapi/asm/%.h
+	@echo start copy
 	@mkdir -p ${dir $@}
 	cp $< $@
 
