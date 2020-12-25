@@ -1,6 +1,5 @@
 #ifndef ASM_CYCLES_H
 #define ASM_CYCLES_H
-
 typedef unsigned long cycles_t;
 
 #define CYCLES_FMT "lu"
@@ -10,8 +9,8 @@ typedef unsigned long cycles_t;
 
 static inline cycles_t get_cycles(void)
 {
-	cycles_t c;
-	c = read_csr(mcycle);
+	cycles_t c = 0;
+	c = read_csr(cycle);
 	return c;
 }
 
